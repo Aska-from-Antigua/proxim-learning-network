@@ -128,8 +128,6 @@ body {
   height: 340px; /* Standardized height */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
 }
 
 .tutorCard:hover {
@@ -143,7 +141,15 @@ body {
   flex-direction: column;
   gap: 8px;
   flex: 1 1 auto;
-  overflow: hidden;
+  min-height: 0;
+  overflow: auto;
+}
+
+.tutorCard .ant-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .tutorCardHeader {

@@ -1,8 +1,6 @@
 
 'use client';
-import React from 'react';
 
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Card, Tag, Typography } from 'antd';
 
@@ -65,20 +63,8 @@ export function TutorCard({
       onClick={() => router.push(`/tutors/${tutor.slug}`)}
       title={tutor.name}
       extra={<Text strong>{tutor.defaults.rateXcd} XCD+</Text>}
-      actions={[]}
     >
-      <div
-        className="tutorCardContent"
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          flex: 1,
-          minHeight: 0,
-          overflowY: 'auto',
-        }}
-      >
-
+      <div className="tutorCardContent">
         {/* Subjects */}
         {subjectsToShow.length > 0 && (
           <div>
