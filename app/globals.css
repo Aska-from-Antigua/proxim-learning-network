@@ -125,6 +125,11 @@ body {
   background: var(--pln-surface);
   box-shadow: var(--pln-shadow-soft);
   transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+  height: 340px; /* Standardized height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
 }
 
 .tutorCard:hover {
@@ -137,6 +142,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  flex: 1 1 auto;
+  overflow: hidden;
 }
 
 .tutorCardHeader {

@@ -1,4 +1,6 @@
+
 'use client';
+import React from 'react';
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -63,22 +65,28 @@ export function TutorCard({
       onClick={() => router.push(`/tutors/${tutor.slug}`)}
       title={tutor.name}
       extra={<Text strong>{tutor.defaults.rateXcd} XCD+</Text>}
-      actions={[
-        <Link key="view" href={`/tutors/${tutor.slug}`} onClick={(event) => event.stopPropagation()}>
-          View
-        </Link>,
-        <Link key="book" href={`/book?tutor=${tutor.slug}`} onClick={(event) => event.stopPropagation()}>
-          Book
-        </Link>,
-      ]}
+      actions={[]}
     >
-      <div className="tutorCardContent">
+      <div
+        className="tutorCardContent"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          flex: 1,
+          minHeight: 0,
+          overflowY: 'auto',
+        }}
+      >
+
         {/* Subjects */}
-        <div>
-          {subjectsToShow.map((s) => (
-            <Tag key={s}>{SubjectLabel[s]}</Tag>
-          ))}
-        </div>
+        {subjectsToShow.length > 0 && (
+          <div>
+            {subjectsToShow.map((s) => (
+              <Tag key={s}>{SubjectLabel[s]}</Tag>
+            ))}
+          </div>
+        )}
 
         {/* Grades */}
         <div>
@@ -88,7 +96,16 @@ export function TutorCard({
         </div>
 
         <Text type="secondary">{modalityText}</Text>
-        <Text>{tutor.bio}</Text>
+        <span
+          style={{
+            display: 'block',
+            whiteSpace: 'pre-line',
+            marginBottom: 4,
+            paddingRight: 4,
+          }}
+        >
+          {tutor.bio}
+        </span>
       </div>
     </Card>
   );
