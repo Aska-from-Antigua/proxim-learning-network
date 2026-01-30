@@ -33,7 +33,6 @@ export function tutorMatchesFilters(
 
     const grades = effectiveGrades(tutor, offering);
     const modalities = effectiveModalities(tutor, offering);
-    const rate = effectiveRateXcd(tutor, offering);
 
     if (gradeFilter.length > 0 && !gradeFilter.some((g) => grades.includes(g))) {
       return false;

@@ -6,7 +6,7 @@ const { Footer } = Layout;
 
 export function PublicFooter() {
   return (
-    <Footer style={{ textAlign: 'center' }}>
+    <Footer className="publicFooter" style={{ textAlign: 'center' }}>
       Proxim Learning Network (PLN) © {new Date().getFullYear()}
     </Footer>
   );

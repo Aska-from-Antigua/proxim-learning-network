@@ -103,6 +103,7 @@ export const TUTORS: Tutor[] = [
         subject: Subject.Biology,
         overrides: {
           rateXcd: 50,
+          modalities: [Modality.InPerson]
         },
       },
     ],

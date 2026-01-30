@@ -9,9 +9,9 @@ const { Content } = Layout;
 
 export function PublicShell({ children }: { children: React.ReactNode }) {
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout className="publicShell">
       <PublicHeader />
-      <Content style={{ padding: 24, maxWidth: 1100, margin: '0 auto', width: '100%' }}>
+      <Content className="publicContent">
         {children}
       </Content>
       <PublicFooter />

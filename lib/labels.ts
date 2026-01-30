@@ -15,6 +15,7 @@ export const SubjectLabel: Record<Subject, string> = {
 };
 
 export const GradeLabel: Record<Grade, string> = {
+  [Grade.Grade1]: 'Grade 1',
   [Grade.Form1]: 'Form 1',
   [Grade.Form2]: 'Form 2',
   [Grade.Form3]: 'Form 3',

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Avatar, Card, Tag, Typography } from 'antd';
+import { Card, Tag, Typography } from 'antd';
 
 import { SubjectLabel, GradeLabel, ModalityLabel } from '@/lib/labels';
 import { effectiveGrades } from '@/lib/helpers/tutor';

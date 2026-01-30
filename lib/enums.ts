@@ -1,4 +1,5 @@
 export const Grade = {
+  Grade1: 'G1',
   Form1: 'F1',
   Form2: 'F2',
   Form3: 'F3',

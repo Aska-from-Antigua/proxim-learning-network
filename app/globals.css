@@ -15,6 +15,8 @@
   --pln-accent-soft: #e0ecff;
   --pln-accent-2: #f97316;
   --pln-tint: #eef2ff;
+  --pln-header-height: 64px;
+  --pln-footer-height: 64px;
   --background: var(--pln-bg);
   --foreground: #111827;
 }
@@ -43,6 +45,33 @@ body {
   background: var(--pln-bg);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.publicShell {
+  min-height: 100vh;
+}
+
+.publicHeader {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: var(--pln-header-height);
+}
+
+.publicFooter {
+  position: sticky;
+  bottom: 0;
+  z-index: 900;
+  height: var(--pln-footer-height);
+  background: var(--pln-surface);
+  border-top: 1px solid var(--pln-border);
+}
+
+.publicContent {
+  padding: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .tutorsPage {

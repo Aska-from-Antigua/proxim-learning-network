@@ -7,7 +7,7 @@ const { Header } = Layout;
 
 export function PublicHeader() {
   return (
-    <Header style={{ display: 'flex', alignItems: 'center' }}>
+    <Header className="publicHeader" style={{ display: 'flex', alignItems: 'center' }}>
       <div style={{ color: 'white', fontWeight: 700, marginRight: 24 }}>
         PLN
       </div>

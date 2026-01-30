@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Proxim Learning Network (PLN)
+
+PLN is a small Next.js app for browsing and booking tutors. This README is written for contributors who are new to Next.js.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js (LTS recommended, v18+)
+- npm (comes with Node)
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure (Quick Tour)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/` — Next.js App Router pages and layouts
+  - `app/(public)/` — public pages (home, tutors listing, tutor profile)
+  - `app/globals.css` — global styles and design tokens (CSS variables)
+- `components/public/` — UI components used by public pages
+- `lib/` — shared types, enums, helpers, and data
+- `public/` — static assets (e.g., placeholder avatar)
 
-## Learn More
+## Design & Styling Choices
 
-To learn more about Next.js, take a look at the following resources:
+- The UI uses a component library and lightweight custom styles.
+- Shared colors, spacing, and sizing live in `app/globals.css` as CSS variables.
+- Prefer scoped class hooks for styling over broad global overrides or CSS-in-JS.
+- Reuse the existing public layout components where appropriate.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build
+```
 
-## Deploy on Vercel
+## Notes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- This app uses the Next.js App Router.
+- Styles are intentionally lightweight and kept in `app/globals.css` with scoped class hooks.

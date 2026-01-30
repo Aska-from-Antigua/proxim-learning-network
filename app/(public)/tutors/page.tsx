@@ -18,9 +18,6 @@ import { PublicShell } from '@/components/public/PublicShell';
 
 const { Title } = Typography;
 
-const MIN_RATE = 20;
-const MAX_RATE = 300;
-
 export default function TutorsPage() {
   const [subjectFilter, setSubjectFilter] = useState<Subject[]>([]);
   const [gradeFilter, setGradeFilter] = useState<Grade[]>([]);
