@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { Card, Space, Tag, Typography } from 'antd';
+import { useRouter } from 'next/navigation';
+import { Avatar, Card, Tag, Typography } from 'antd';
 
 import { SubjectLabel, GradeLabel, ModalityLabel } from '@/lib/labels';
 import { effectiveGrades } from '@/lib/helpers/tutor';
@@ -30,6 +31,7 @@ export function TutorCard({
   activeSubjectFilter = [],
   activeGradeFilter = [],
 }: Props) {
+  const router = useRouter();
   const hasSubjectFilter = activeSubjectFilter.length > 0;
   const hasGradeFilter = activeGradeFilter.length > 0;
 
@@ -56,15 +58,21 @@ export function TutorCard({
 
   return (
     <Card
+      className="tutorCard"
       hoverable
+      onClick={() => router.push(`/tutors/${tutor.slug}`)}
       title={tutor.name}
       extra={<Text strong>{tutor.defaults.rateXcd} XCD+</Text>}
       actions={[
-        <Link key="view" href={`/tutors/${tutor.slug}`}>View</Link>,
-        <Link key="book" href={`/book?tutor=${tutor.slug}`}>Book</Link>,
+        <Link key="view" href={`/tutors/${tutor.slug}`} onClick={(event) => event.stopPropagation()}>
+          View
+        </Link>,
+        <Link key="book" href={`/book?tutor=${tutor.slug}`} onClick={(event) => event.stopPropagation()}>
+          Book
+        </Link>,
       ]}
     >
-      <Space orientation="vertical" size={8}>
+      <div className="tutorCardContent">
         {/* Subjects */}
         <div>
           {subjectsToShow.map((s) => (
@@ -81,7 +89,7 @@ export function TutorCard({
 
         <Text type="secondary">{modalityText}</Text>
         <Text>{tutor.bio}</Text>
-      </Space>
+      </div>
     </Card>
   );
 }
