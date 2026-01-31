@@ -8,7 +8,7 @@ export const Grade = {
   ALevels: 'AL',
 } as const;
 
-export type Grade = typeof Grade[keyof typeof Grade];
+export type Grade = (typeof Grade)[keyof typeof Grade];
 
 export const Subject = {
   Math: 'MATH',
@@ -24,11 +24,11 @@ export const Subject = {
   PrinciplesOfBusiness: 'POB',
 } as const;
 
-export type Subject = typeof Subject[keyof typeof Subject];
+export type Subject = (typeof Subject)[keyof typeof Subject];
 
 export const Modality = {
   Online: 'ONLINE',
   InPerson: 'IN_PERSON',
 } as const;
 
-export type Modality = typeof Modality[keyof typeof Modality];
+export type Modality = (typeof Modality)[keyof typeof Modality];

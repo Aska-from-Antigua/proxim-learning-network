@@ -45,6 +45,32 @@ Then open `http://localhost:3000`.
 npm run build
 ```
 
+## Development workflow
+
+Formatting and linting:
+
+```bash
+npm run format
+npm run format:check
+npm run lint
+npm run lint:fix
+```
+
+Type safety:
+
+```bash
+npm run typecheck
+```
+
+Pre-commit:
+
+- Husky runs `lint-staged` on staged files (ESLint fix on TS/TSX, Prettier on common file types).
+- Commit messages are checked with Conventional Commits (commitlint).
+
+CI:
+
+- On PRs and pushes to `main`: `npm run lint`, `npm run typecheck`, `npm run build`.
+
 ## Notes
 
 - This app uses the Next.js App Router.

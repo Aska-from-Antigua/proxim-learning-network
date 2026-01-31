@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useRouter } from 'next/navigation';
@@ -43,7 +42,7 @@ function takeWithinCharBudget<T>(
 type Props = {
   tutor: Tutor;
   activeSubjectFilter?: Subject[]; // the selected subjects from the page
-  activeGradeFilter?: Grade[];     // the selected grades from the page
+  activeGradeFilter?: Grade[]; // the selected grades from the page
 };
 
 export function TutorCard({
@@ -107,7 +106,9 @@ export function TutorCard({
               ))}
               {hiddenSubjectCount > 0 ? (
                 <Tag>
-                  <Link href={`/tutors/${tutor.slug}`}>+{hiddenSubjectCount} more</Link>
+                  <Link href={`/tutors/${tutor.slug}`}>
+                    +{hiddenSubjectCount} more
+                  </Link>
                 </Tag>
               ) : null}
             </div>
@@ -122,7 +123,9 @@ export function TutorCard({
             ))}
             {hiddenGradeCount > 0 ? (
               <Tag>
-                <Link href={`/tutors/${tutor.slug}`}>+{hiddenGradeCount} more</Link>
+                <Link href={`/tutors/${tutor.slug}`}>
+                  +{hiddenGradeCount} more
+                </Link>
               </Tag>
             ) : null}
           </div>

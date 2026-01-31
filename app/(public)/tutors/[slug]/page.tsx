@@ -2,14 +2,7 @@
 
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import {
-  Card,
-  Col,
-  Empty,
-  Row,
-  Space,
-  Typography,
-} from 'antd';
+import { Card, Col, Empty, Row, Space, Typography } from 'antd';
 
 import { PublicShell } from '@/components/public/PublicShell';
 import { TutorHeroCard } from '@/components/public/TutorHeroCard';
@@ -82,7 +75,6 @@ export default function TutorProfilePage() {
 
           {/* Availability */}
           <TutorAvailabilityCard />
-
         </Space>
       </div>
     </PublicShell>

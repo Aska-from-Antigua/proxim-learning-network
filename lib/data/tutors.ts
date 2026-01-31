@@ -1,4 +1,4 @@
-import { Tutor } from '../types';
+import type { Tutor } from '../types';
 import { Grade, Subject, Modality } from '../enums';
 
 export const TUTORS: Tutor[] = [
@@ -6,8 +6,9 @@ export const TUTORS: Tutor[] = [
     id: 1,
     slug: 'jerry-aska',
     name: 'Jerry Aska',
-    tagline: 'Concept-first tutoring for Forms 1-3 in Maths, IT, and Integrated Science.',
-    bio: 'I focus on building strong fundamentals before moving into exam practice, helping students truly understand what they are learning rather than memorizing steps. My sessions are structured, patient, and paced to the student\'s level, with plenty of time for questions. This approach works especially well for Forms 1-3 students who may feel behind or lack confidence.',
+    tagline:
+      'Concept-first tutoring for Forms 1-3 in Maths, IT, and Integrated Science.',
+    bio: "I focus on building strong fundamentals before moving into exam practice, helping students truly understand what they are learning rather than memorizing steps. My sessions are structured, patient, and paced to the student's level, with plenty of time for questions. This approach works especially well for Forms 1-3 students who may feel behind or lack confidence.",
     email: 'jerry.aska@pln.com',
     whatsapp: '+1-268-555-0001',
     defaults: {
@@ -47,7 +48,8 @@ export const TUTORS: Tutor[] = [
     id: 3,
     slug: 'lucia-murray',
     name: 'Lucia Murray',
-    tagline: 'English A & B tutoring that builds confidence, writing, and exam technique.',
+    tagline:
+      'English A & B tutoring that builds confidence, writing, and exam technique.',
     bio: 'I help students strengthen reading comprehension, writing, and exam technique in both English A and English B. My teaching style is supportive and confidence-building, especially for students who struggle to express themselves clearly. Lessons focus on understanding mark schemes and improving written responses over time.',
     email: 'lucia.murray@pln.com',
     whatsapp: '+1-268-555-0003',
@@ -91,13 +93,7 @@ export const TUTORS: Tutor[] = [
     whatsapp: '+1-268-555-0004',
     defaults: {
       rateXcd: 40,
-      grades: [
-        Grade.Form1,
-        Grade.Form2,
-        Grade.Form3,
-        Grade.Form4,
-        Grade.Form5,
-      ],
+      grades: [Grade.Form1, Grade.Form2, Grade.Form3, Grade.Form4, Grade.Form5],
       modalities: [Modality.InPerson, Modality.Online],
       locationLabel: 'Near Transport Board',
     },
@@ -107,7 +103,7 @@ export const TUTORS: Tutor[] = [
         subject: Subject.Biology,
         overrides: {
           rateXcd: 50,
-          modalities: [Modality.InPerson]
+          modalities: [Modality.InPerson],
         },
       },
     ],
@@ -138,7 +134,8 @@ export const TUTORS: Tutor[] = [
     id: 6,
     slug: 'shaniyah-matthews',
     name: 'Shaniyah Matthews',
-    tagline: 'Supportive tutoring in Social Studies (Forms 3-5) and Integrated Science (Forms 1-3).',
+    tagline:
+      'Supportive tutoring in Social Studies (Forms 3-5) and Integrated Science (Forms 1-3).',
     bio: 'I provide patient, age-appropriate tutoring in Social Studies and Integrated Science. My approach emphasizes clear explanations, practical examples, and steady progression through topics. I work well with younger students and those who benefit from a calm, supportive learning environment.',
     email: 'shaniyah.matthews@pln.com',
     whatsapp: '+1-268-555-0006',
@@ -170,13 +167,7 @@ export const TUTORS: Tutor[] = [
     whatsapp: '+1-268-555-0007',
     defaults: {
       rateXcd: 30,
-      grades: [
-        Grade.Form1,
-        Grade.Form2,
-        Grade.Form3,
-        Grade.Form4,
-        Grade.Form5,
-      ],
+      grades: [Grade.Form1, Grade.Form2, Grade.Form3, Grade.Form4, Grade.Form5],
       modalities: [Modality.InPerson, Modality.Online],
       locationLabel: 'Jonas Road',
     },
@@ -190,8 +181,9 @@ export const TUTORS: Tutor[] = [
     id: 8,
     slug: 'albev-wade',
     name: 'Albev Wade',
-    tagline: 'Premium one-on-one tutoring across all subjects and grade levels.',
-    bio: 'I provide premium one-on-one tutoring across all subjects and grade levels, tailored entirely to the student\'s needs. Sessions are highly personalized, whether the goal is exam preparation, concept mastery, or accelerated learning. This service is ideal for families seeking intensive, individualized academic support.',
+    tagline:
+      'Premium one-on-one tutoring across all subjects and grade levels.',
+    bio: "I provide premium one-on-one tutoring across all subjects and grade levels, tailored entirely to the student's needs. Sessions are highly personalized, whether the goal is exam preparation, concept mastery, or accelerated learning. This service is ideal for families seeking intensive, individualized academic support.",
     email: 'albev.wade@pln.com',
     whatsapp: '+1-268-555-0008',
     defaults: {

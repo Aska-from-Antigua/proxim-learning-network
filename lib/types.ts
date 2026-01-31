@@ -1,4 +1,4 @@
-import { Grade, Subject, Modality } from './enums';
+import type { Grade, Subject, Modality } from './enums';
 
 export type TutorDefaults = {
   rateXcd: number;
