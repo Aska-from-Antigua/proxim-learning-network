@@ -4,7 +4,7 @@ export type TutorDefaults = {
   rateXcd: number;
   modalities: Modality[];
   grades: Grade[];
-  locationLabel?: string;
+  locationLabel: string;
 };
 
 export type OfferingOverrides = Partial<{
@@ -22,6 +22,7 @@ export type Tutor = {
   id: number;
   slug: string;
   name: string;
+  tagline: string;
   bio: string;
   email: string;
   whatsapp: string;

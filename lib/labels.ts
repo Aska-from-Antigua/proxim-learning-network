@@ -25,6 +25,6 @@ export const GradeLabel: Record<Grade, string> = {
 };
 
 export const ModalityLabel: Record<Modality, string> = {
-  [Modality.Online]: 'Online',
+  [Modality.Online]: 'Remote',
   [Modality.InPerson]: 'In-person',
 };

@@ -71,6 +71,7 @@ body {
   border-top: 1px solid var(--pln-border);
 }
 
+
 .publicContent {
   padding: 24px;
   max-width: 1100px;
@@ -79,7 +80,7 @@ body {
 }
 
 .tutorsPage {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 24px 20px 56px;
   display: flex;
@@ -153,7 +154,7 @@ body {
 }
 
 
-.tutorSectionBio {
+.tutorSectionTagline {
   min-height: calc(var(--pln-card-row-height) * 3);
   max-height: calc(var(--pln-card-row-height) * 3);
   overflow: hidden;
@@ -191,8 +192,8 @@ body {
   padding-bottom: 0;
 }
 
-.tutorBio,
-.tutorBio.ant-typography {
+.tutorTagline,
+.tutorTagline.ant-typography {
   line-height: 1.4;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -223,18 +224,12 @@ body {
   min-height: 0;
 }
 
-.tutorSectionModality .ant-typography {
-  line-height: 1.4;
-  min-height: 1.4em;
-  display: block;
-}
-
 .tutorSubjects > .ant-tag,
 .tutorGrades > .ant-tag {
   margin: 0;
 }
 
-.tutorBio {
+.tutorTagline {
   margin-bottom: 2px;
 }
 
@@ -265,10 +260,45 @@ body {
   background: var(--pln-accent-soft);
 }
 
-.tutorProfileHeader {
+.tutorAvatarXl {
+  width: 144px;
+  height: 144px;
+}
+
+.tutorHeroTitle {
   display: flex;
-  align-items: flex-start;
-  gap: 16px;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tutorHeroName {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.tutorHeroTagline {
+  max-width: 75%;
+}
+
+.tutorProfileHero {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tutorProfileSummary {
+  display: block;
+}
+
+
+.tutorProfileCtas {
+  width: 100%;
+}
+
+.tutorProfileContact {
+  display: block;
+  font-size: 12px;
 }
 
 .tutorProfileMeta {

@@ -68,7 +68,7 @@ export default function TutorsPage() {
         ) : (
           <Row className="tutorGrid" gutter={[16, 16]}>
             {filteredTutors.map((tutor) => (
-              <Col key={tutor.id} xs={24} sm={12} md={8} lg={6}>
+              <Col key={tutor.id} xs={24} sm={12} md={8} lg={8}>
                 <TutorCard
                   tutor={tutor}
                   activeSubjectFilter={subjectFilter}
