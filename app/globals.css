@@ -17,6 +17,10 @@
   --pln-tint: #eef2ff;
   --pln-header-height: 64px;
   --pln-footer-height: 64px;
+  --pln-card-row-height: 2em;
+  --pln-tag-height: 26px;
+  --pln-tag-gap: 6px;
+  --pln-tag-row-buffer: 8px;
   --background: var(--pln-bg);
   --foreground: #111827;
 }
@@ -125,7 +129,8 @@ body {
   background: var(--pln-surface);
   box-shadow: var(--pln-shadow-soft);
   transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
-  height: 340px; /* Standardized height */
+  min-height: 320px; /* Standardized minimum height */
+  height: auto;
   display: flex;
   flex-direction: column;
 }
@@ -139,10 +144,98 @@ body {
 .tutorCardContent {
   display: flex;
   flex-direction: column;
-  gap: 8px;
   flex: 1 1 auto;
   min-height: 0;
-  overflow: auto;
+}
+
+.tutorSection {
+  width: 100%;
+}
+
+
+.tutorSectionBio {
+  min-height: calc(var(--pln-card-row-height) * 3);
+  max-height: calc(var(--pln-card-row-height) * 3);
+  overflow: hidden;
+}
+
+.tutorSectionSubjects {
+  min-height: calc((var(--pln-tag-height) * 3) + (var(--pln-tag-gap) * 2) + var(--pln-tag-row-buffer));
+  max-height: calc((var(--pln-tag-height) * 3) + (var(--pln-tag-gap) * 2) + var(--pln-tag-row-buffer));
+  overflow: hidden !important;
+  scrollbar-width: none;
+  box-sizing: border-box;
+}
+
+.tutorSectionGrades {
+  min-height: calc((var(--pln-tag-height) * 2) + var(--pln-tag-gap) + var(--pln-tag-row-buffer));
+  max-height: calc((var(--pln-tag-height) * 2) + var(--pln-tag-gap) + var(--pln-tag-row-buffer));
+  overflow: hidden !important;
+  scrollbar-width: none;
+  box-sizing: border-box;
+}
+
+.tutorSection + .tutorSection {
+  padding-top: 6px;
+}
+
+.tutorSection {
+  padding: 6px 0;
+}
+
+.tutorSection:first-child {
+  padding-top: 0;
+}
+
+.tutorSection:last-child {
+  padding-bottom: 0;
+}
+
+.tutorBio,
+.tutorBio.ant-typography {
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-clamp: 3;
+  white-space: normal;
+}
+
+.tutorSubjects {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: var(--pln-tag-gap);
+  overflow: hidden !important;
+  scrollbar-width: none;
+  min-height: 0;
+}
+
+.tutorGrades {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: var(--pln-tag-gap);
+  overflow: hidden !important;
+  scrollbar-width: none;
+  min-height: 0;
+}
+
+.tutorSectionModality .ant-typography {
+  line-height: 1.4;
+  min-height: 1.4em;
+  display: block;
+}
+
+.tutorSubjects > .ant-tag,
+.tutorGrades > .ant-tag {
+  margin: 0;
+}
+
+.tutorBio {
+  margin-bottom: 2px;
 }
 
 .tutorCard .ant-card-body {
@@ -192,6 +285,10 @@ body {
   background: var(--pln-accent-soft);
   color: #1e3a8a;
   padding: 2px 10px;
+  line-height: 20px;
+  min-height: var(--pln-tag-height);
+  display: inline-flex;
+  align-items: center;
 }
 
 .tutorCard .ant-card-head-title {
@@ -200,6 +297,10 @@ body {
 
 .tutorCard .ant-card-extra .ant-typography {
   color: var(--pln-accent-2);
+}
+
+.tutorCard .ant-card-head {
+  border-bottom: none;
 }
 
 .tutorCard .ant-card-actions {
@@ -214,4 +315,13 @@ body {
   display: block;
   padding: 10px 12px;
   width: 100%;
+}
+
+/* Hide any accidental inner scrollbars in tutor cards (WebKit) */
+.tutorSectionSubjects::-webkit-scrollbar,
+.tutorSectionGrades::-webkit-scrollbar,
+.tutorSubjects::-webkit-scrollbar,
+.tutorGrades::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
