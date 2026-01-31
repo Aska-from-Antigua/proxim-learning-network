@@ -8,7 +8,8 @@ export function TutorAvailabilityCard() {
   return (
     <Card className="filtersCard" title="Availability">
       <Text type="secondary">
-        Coming soon: in-app availability and booking. For now, use WhatsApp or email to coordinate a time.
+        Coming soon: in-app availability and booking. For now, use WhatsApp or
+        email to coordinate a time.
       </Text>
     </Card>
   );

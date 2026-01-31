@@ -12,7 +12,10 @@ export function effectiveGrades(tutor: Tutor, offering: Offering): Grade[] {
   return offering.overrides?.grades ?? tutor.defaults.grades;
 }
 
-export function effectiveModalities(tutor: Tutor, offering: Offering): Modality[] {
+export function effectiveModalities(
+  tutor: Tutor,
+  offering: Offering,
+): Modality[] {
   return offering.overrides?.modalities ?? tutor.defaults.modalities;
 }
 
@@ -34,7 +37,10 @@ export function tutorMatchesFilters(
     const grades = effectiveGrades(tutor, offering);
     const modalities = effectiveModalities(tutor, offering);
 
-    if (gradeFilter.length > 0 && !gradeFilter.some((g) => grades.includes(g))) {
+    if (
+      gradeFilter.length > 0 &&
+      !gradeFilter.some((g) => grades.includes(g))
+    ) {
       return false;
     }
 
@@ -52,7 +58,8 @@ export function tutorDisplayRateXcd(
   gradeFilter: Grade[],
 ): number {
   const relevant = tutor.offerings.filter((o) => {
-    if (subjectFilter.length > 0 && !subjectFilter.includes(o.subject)) return false;
+    if (subjectFilter.length > 0 && !subjectFilter.includes(o.subject))
+      return false;
     if (gradeFilter.length > 0) {
       const grades = effectiveGrades(tutor, o);
       if (!gradeFilter.some((g) => grades.includes(g))) return false;

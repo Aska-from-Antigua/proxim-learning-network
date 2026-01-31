@@ -5,7 +5,11 @@ import { Card, Typography } from 'antd';
 import { ModalityLabel, SubjectLabel } from '@/lib/labels';
 import type { Offering, Tutor } from '@/lib/types';
 import { gradeSummary } from '@/lib/helpers/summary';
-import { effectiveGrades, effectiveModalities, effectiveRateXcd } from '@/lib/helpers/tutor';
+import {
+  effectiveGrades,
+  effectiveModalities,
+  effectiveRateXcd,
+} from '@/lib/helpers/tutor';
 
 const { Text } = Typography;
 

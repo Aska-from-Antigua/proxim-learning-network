@@ -14,7 +14,9 @@ type Props = {
 };
 
 export function TutorHeroCard({ tutor }: Props) {
-  const allGrades = tutor.offerings.flatMap((offering) => effectiveGrades(tutor, offering));
+  const allGrades = tutor.offerings.flatMap((offering) =>
+    effectiveGrades(tutor, offering),
+  );
   const subjectsSummaryText = subjectSummary(tutor.offerings);
   const gradesSummaryText = `Grades: ${gradeSummary(allGrades)}`;
 
@@ -24,7 +26,9 @@ export function TutorHeroCard({ tutor }: Props) {
       title={
         <div className="tutorHeroTitle">
           <Text className="tutorHeroName">{tutor.name}</Text>
-          <Text type="secondary" className="tutorHeroTagline">{tutor.tagline}</Text>
+          <Text type="secondary" className="tutorHeroTagline">
+            {tutor.tagline}
+          </Text>
         </div>
       }
     >
@@ -61,7 +65,10 @@ export function TutorHeroCard({ tutor }: Props) {
             >
               Message on WhatsApp
             </Button>
-            <Button block href={`mailto:${tutor.email}?subject=${encodeURIComponent('Tutoring request')}`}>
+            <Button
+              block
+              href={`mailto:${tutor.email}?subject=${encodeURIComponent('Tutoring request')}`}
+            >
               Email
             </Button>
             <Text type="secondary" className="tutorProfileContact">

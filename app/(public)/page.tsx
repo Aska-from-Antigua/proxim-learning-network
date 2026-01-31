@@ -11,13 +11,21 @@ export default function HomePage() {
     <PublicShell>
       <Space orientation="vertical" size={24} style={{ width: '100%' }}>
         <Card>
-          <Title level={2} style={{ marginTop: 0 }}>Proxim Learning Network</Title>
+          <Title level={2} style={{ marginTop: 0 }}>
+            Proxim Learning Network
+          </Title>
           <Paragraph>
             A local network connecting Antiguan students with trusted tutors.
           </Paragraph>
           <Space>
-            <Link href="/tutors"><Button type="primary" size="large">Find a tutor</Button></Link>
-            <Button size="large" href="#how">How it works</Button>
+            <Link href="/tutors">
+              <Button type="primary" size="large">
+                Find a tutor
+              </Button>
+            </Link>
+            <Button size="large" href="#how">
+              How it works
+            </Button>
           </Space>
         </Card>
 

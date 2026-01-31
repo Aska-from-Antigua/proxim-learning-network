@@ -1,0 +1,18 @@
+#!/bin/sh
+
+if ! npx --no-install commitlint --edit "$1"; then
+  echo ""
+  echo "❌ Commit message does not follow Conventional Commits."
+  echo ""
+  echo "Examples:"
+  echo "  feat(ui): add tutor profile hero"
+  echo "  fix(lint): resolve tsconfig include issue"
+  echo "  chore: update dependencies"
+  echo ""
+  echo "Format:"
+  echo "  <type>(optional-scope): short description"
+  echo ""
+  echo "Allowed types: feat, fix, chore, docs, refactor, test"
+  echo ""
+  exit 1
+fi

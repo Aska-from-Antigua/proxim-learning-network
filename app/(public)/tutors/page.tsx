@@ -1,19 +1,14 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import {
-  Col,
-  Row,
-  Typography,
-  Empty,
-} from 'antd';
+import { Col, Row, Typography, Empty } from 'antd';
 
 import { TUTORS } from '@/lib/data/tutors';
-import { Grade, Subject } from '@/lib/enums';
+import type { Grade, Subject } from '@/lib/enums';
 import { TutorCard } from '@/components/public/TutorCard';
-import { tutorDisplayRateXcd, tutorMatchesFilters, type ModalityFilter } from '@/lib/helpers/tutor';
+import { tutorDisplayRateXcd, tutorMatchesFilters } from '@/lib/helpers/tutor';
+import type { RateSort, ModalityFilter } from '@/lib/helpers/tutor';
 import { TutorFilters } from '@/components/public/TutorFilters';
-import type { RateSort } from '@/lib/helpers/tutor';
 import { PublicShell } from '@/components/public/PublicShell';
 
 const { Title } = Typography;
@@ -35,9 +30,7 @@ export default function TutorsPage() {
         rate: tutorDisplayRateXcd(tutor, subjectFilter, gradeFilter),
       }))
       .sort((a, b) =>
-        rateSort === 'RATE_ASC'
-          ? a.rate - b.rate
-          : b.rate - a.rate,
+        rateSort === 'RATE_ASC' ? a.rate - b.rate : b.rate - a.rate,
       )
       .map((x) => x.tutor);
   }, [subjectFilter, gradeFilter, modalityFilter, rateSort]);

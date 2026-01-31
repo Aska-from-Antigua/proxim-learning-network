@@ -3,8 +3,7 @@
 import { Card, Col, Row, Select, Segmented, Typography } from 'antd';
 import { Grade, Subject, Modality } from '@/lib/enums';
 import { GradeLabel, SubjectLabel, ModalityLabel } from '@/lib/labels';
-import type { ModalityFilter } from '@/lib/helpers/tutor';
-import type { RateSort } from '@/lib/helpers/tutor';
+import type { ModalityFilter, RateSort } from '@/lib/helpers/tutor';
 
 const { Text } = Typography;
 
@@ -68,11 +67,19 @@ export function TutorFilters(props: Props) {
               <Segmented
                 options={[
                   { label: 'Any', value: 'ANY' },
-                  { label: ModalityLabel[Modality.Online], value: Modality.Online },
-                  { label: ModalityLabel[Modality.InPerson], value: Modality.InPerson },
+                  {
+                    label: ModalityLabel[Modality.Online],
+                    value: Modality.Online,
+                  },
+                  {
+                    label: ModalityLabel[Modality.InPerson],
+                    value: Modality.InPerson,
+                  },
                 ]}
                 value={props.modalityFilter}
-                onChange={(v) => props.onModalityFilterChange(v as ModalityFilter)}
+                onChange={(v) =>
+                  props.onModalityFilterChange(v as ModalityFilter)
+                }
               />
             </div>
           </Col>
