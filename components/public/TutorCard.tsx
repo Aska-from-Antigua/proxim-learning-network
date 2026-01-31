@@ -5,21 +5,13 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Card, Tag, Typography } from 'antd';
 
-import { SubjectLabel, GradeLabel, ModalityLabel } from '@/lib/labels';
+import { SubjectLabel, GradeLabel } from '@/lib/labels';
+import { intersect, unique } from '@/lib/helpers/array';
 import { effectiveGrades } from '@/lib/helpers/tutor';
 import type { Tutor } from '@/lib/types';
 import type { Grade, Subject } from '@/lib/enums';
 
 const { Text } = Typography;
-
-function unique<T>(arr: T[]): T[] {
-  return Array.from(new Set(arr));
-}
-
-function intersect<T>(a: T[], b: T[]): T[] {
-  const setB = new Set(b);
-  return a.filter((x) => setB.has(x));
-}
 
 function takeWithinCharBudget<T>(
   items: T[],
@@ -87,10 +79,6 @@ export function TutorCard({
   const { visible: visibleGrades, hiddenCount: hiddenGradeCount } =
     takeWithinCharBudget(gradesToShow, (g) => GradeLabel[g], 28);
 
-  const modalityText = tutor.defaults.modalities
-    .map((m) => ModalityLabel[m])
-    .join(' • ');
-
   return (
     <Card
       className="tutorCard"
@@ -100,14 +88,14 @@ export function TutorCard({
         <>
           <Text strong>{tutor.name}</Text>
           <br />
-          <Text type="secondary">{modalityText}</Text>
+          <Text type="secondary">{tutor.defaults.locationLabel}</Text>
         </>
       }
       extra={<Text strong>{tutor.defaults.rateXcd} XCD+</Text>}
     >
       <div className="tutorCardContent">
-        <div className="tutorSection tutorSectionBio">
-          <Text className="tutorBio">{tutor.bio}</Text>
+        <div className="tutorSection tutorSectionTagline">
+          <Text className="tutorTagline">{tutor.tagline}</Text>
         </div>
 
         {/* Subjects */}
