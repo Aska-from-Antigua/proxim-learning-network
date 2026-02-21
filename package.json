@@ -4,8 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "setup": "npm install && npm run db:start && npm run db:migrate && npm run db:seed",
+    "dev:setup": "npm run setup && npm run dev",
     "build": "next build",
     "start": "next start",
+    "db:start": "sh -c 'finch run --name pln-postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=pln -p 5432:5432 -d postgres:16 >/dev/null 2>&1 || finch start pln-postgres'",
+    "db:stop": "sh -c 'finch stop pln-postgres || true'",
+    "db:logs": "finch logs pln-postgres",
+    "db:status": "finch ps",
+    "db:migrate": "prisma migrate deploy",
+    "db:seed": "node prisma/seed.mjs",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
@@ -15,6 +23,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^6.1.0",
+    "@prisma/client": "^6.16.2",
     "antd": "^6.2.2",
     "next": "16.1.6",
     "react": "19.2.3",
@@ -39,6 +48,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^15.5.2",
     "prettier": "^3.8.1",
+    "prisma": "^6.16.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   },

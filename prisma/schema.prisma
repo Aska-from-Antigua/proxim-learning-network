@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TutorStatus {
+  pending
+  approved
+  denied
+  suspended
+}
+
+enum ContactMethod {
+  whatsapp
+  email
+}
+
+enum OfferingModality {
+  online
+  in_person
+  both
+}
+
+model Tutor {
+  tutor_id                  Int           @id @default(autoincrement())
+  full_name                 String
+  phone                     String        @unique
+  email                     String
+  preferred_contact_method  ContactMethod
+  status                    TutorStatus   @default(pending)
+  bio                       String?
+  created_at                DateTime      @default(now())
+  updated_at                DateTime      @updatedAt
+  offerings                 Offering[]
+}
+
+model Subject {
+  subject_id  Int        @id @default(autoincrement())
+  name        String     @unique
+  offerings   Offering[]
+}
+
+model Offering {
+  offering_id        Int              @id @default(autoincrement())
+  tutor_id           Int
+  subject_id         Int
+  grades             String[]
+  modality           OfferingModality
+  location_area      String?
+  price_cents        Int
+  currency           String
+  availability_tags  String[]
+  created_at         DateTime         @default(now())
+  updated_at         DateTime         @updatedAt
+
+  tutor    Tutor   @relation(fields: [tutor_id], references: [tutor_id], onDelete: Cascade)
+  subject  Subject @relation(fields: [subject_id], references: [subject_id])
+
+  @@index([tutor_id])
+  @@index([subject_id])
+  @@index([price_cents])
+  @@index([modality])
+}

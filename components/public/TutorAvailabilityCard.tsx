@@ -6,10 +6,10 @@ const { Text } = Typography;
 
 export function TutorAvailabilityCard() {
   return (
-    <Card className="filtersCard" title="Availability">
+    <Card className="contentCard" title="Availability & Scheduling">
       <Text type="secondary">
-        Coming soon: in-app availability and booking. For now, use WhatsApp or
-        email to coordinate a time.
+        In-app scheduling is coming soon. For now, coordinate session times
+        directly with this tutor via WhatsApp or email.
       </Text>
     </Card>
   );

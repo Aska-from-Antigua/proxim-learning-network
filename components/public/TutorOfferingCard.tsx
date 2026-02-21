@@ -26,7 +26,7 @@ export function TutorOfferingCard({ tutor, offering }: Props) {
   return (
     <Card
       type="inner"
-      className="filtersCard"
+      className="offeringCard"
       title={
         <>
           <Text strong>{SubjectLabel[offering.subject]}</Text>

@@ -19,10 +19,12 @@ export function TutorHeroCard({ tutor }: Props) {
   );
   const subjectsSummaryText = subjectSummary(tutor.offerings);
   const gradesSummaryText = `Grades: ${gradeSummary(allGrades)}`;
+  const preferredContactLabel =
+    tutor.preferredContactMethod === 'whatsapp' ? 'WhatsApp' : 'Email';
 
   return (
     <Card
-      className="filtersCard"
+      className="contentCard"
       title={
         <div className="tutorHeroTitle">
           <Text className="tutorHeroName">{tutor.name}</Text>
@@ -33,7 +35,7 @@ export function TutorHeroCard({ tutor }: Props) {
       }
     >
       <Row gutter={[16, 16]} align="middle">
-        <Col xs={24} md={16}>
+        <Col xs={24} md={15}>
           <div className="tutorProfileHero">
             <Avatar
               className="tutorAvatarLg tutorAvatarXl"
@@ -41,21 +43,17 @@ export function TutorHeroCard({ tutor }: Props) {
               alt={`${tutor.name} profile`}
             />
             <div className="tutorProfileMeta">
-              <Text type="secondary" className="tutorProfileSummary">
-                {subjectsSummaryText}
-              </Text>
-              <Text type="secondary" className="tutorProfileSummary">
-                {gradesSummaryText}
-              </Text>
-              <Text type="secondary" className="tutorProfileSummary">
+              <Text className="tutorProfileSummary">{subjectsSummaryText}</Text>
+              <Text className="tutorProfileSummary">{gradesSummaryText}</Text>
+              <Text className="tutorProfileSummary">
                 Location/Platform: {tutor.defaults.locationLabel}
               </Text>
             </div>
           </div>
         </Col>
 
-        <Col xs={24} md={8}>
-          <Space orientation="vertical" size={8} className="tutorProfileCtas">
+        <Col xs={24} md={9}>
+          <Space direction="vertical" size={8} className="tutorProfileCtas">
             <Button
               type="primary"
               block
@@ -69,13 +67,16 @@ export function TutorHeroCard({ tutor }: Props) {
               block
               href={`mailto:${tutor.email}?subject=${encodeURIComponent('Tutoring request')}`}
             >
-              Email
+              Send Email
             </Button>
             <Text type="secondary" className="tutorProfileContact">
               {tutor.email}
             </Text>
             <Text type="secondary" className="tutorProfileContact">
               {tutor.whatsapp}
+            </Text>
+            <Text type="secondary" className="tutorProfileContact">
+              Preferred contact: {preferredContactLabel}
             </Text>
           </Space>
         </Col>

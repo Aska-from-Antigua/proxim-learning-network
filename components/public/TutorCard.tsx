@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Card, Tag, Typography } from 'antd';
+import { Button, Card, Tag, Typography } from 'antd';
 
 import { SubjectLabel, GradeLabel } from '@/lib/labels';
 import { intersect, unique } from '@/lib/helpers/array';
@@ -22,11 +22,9 @@ function takeWithinCharBudget<T>(
 
   for (const item of items) {
     const label = labelFor(item);
-    // Approximate spacing / padding cost per tag so we don't overfill.
     const cost = label.length + 4;
     if (visible.length > 0 && used + cost > maxChars) break;
     if (visible.length === 0 && cost > maxChars) {
-      // Always show at least one tag.
       visible.push(item);
       used += cost;
       continue;
@@ -41,8 +39,8 @@ function takeWithinCharBudget<T>(
 
 type Props = {
   tutor: Tutor;
-  activeSubjectFilter?: Subject[]; // the selected subjects from the page
-  activeGradeFilter?: Grade[]; // the selected grades from the page
+  activeSubjectFilter?: Subject[];
+  activeGradeFilter?: Grade[];
 };
 
 export function TutorCard({
@@ -54,19 +52,14 @@ export function TutorCard({
   const hasSubjectFilter = activeSubjectFilter.length > 0;
   const hasGradeFilter = activeGradeFilter.length > 0;
 
-  // Which offerings are relevant to show on this card?
   const relevantOfferings = hasSubjectFilter
     ? tutor.offerings.filter((o) => activeSubjectFilter.includes(o.subject))
     : tutor.offerings;
 
-  // Subjects to display
   const subjectsToShow = unique(relevantOfferings.map((o) => o.subject));
-  // 3-ish rows of chips depending on label length. This is an approximation that
-  // avoids internal scrollbars while handling long subject names better.
   const { visible: visibleSubjects, hiddenCount: hiddenSubjectCount } =
-    takeWithinCharBudget(subjectsToShow, (s) => SubjectLabel[s], 48);
+    takeWithinCharBudget(subjectsToShow, (s) => SubjectLabel[s], 54);
 
-  // Grades to display: union of effective grades across relevant offerings
   const relevantGradesUnion = unique(
     relevantOfferings.flatMap((o) => effectiveGrades(tutor, o)),
   );
@@ -76,7 +69,7 @@ export function TutorCard({
     : relevantGradesUnion;
 
   const { visible: visibleGrades, hiddenCount: hiddenGradeCount } =
-    takeWithinCharBudget(gradesToShow, (g) => GradeLabel[g], 28);
+    takeWithinCharBudget(gradesToShow, (g) => GradeLabel[g], 34);
 
   return (
     <Card
@@ -84,21 +77,25 @@ export function TutorCard({
       hoverable
       onClick={() => router.push(`/tutors/${tutor.slug}`)}
       title={
-        <>
-          <Text strong>{tutor.name}</Text>
-          <br />
+        <div className="tutorCardHead">
+          <Text strong className="tutorCardName">
+            {tutor.name}
+          </Text>
           <Text type="secondary">{tutor.defaults.locationLabel}</Text>
-        </>
+        </div>
       }
-      extra={<Text strong>{tutor.defaults.rateXcd} XCD+</Text>}
+      extra={
+        <Text strong className="ratePill">
+          {tutor.defaults.rateXcd} XCD+
+        </Text>
+      }
     >
       <div className="tutorCardContent">
         <div className="tutorSection tutorSectionTagline">
           <Text className="tutorTagline">{tutor.tagline}</Text>
         </div>
 
-        {/* Subjects */}
-        {subjectsToShow.length > 0 && (
+        {subjectsToShow.length > 0 ? (
           <div className="tutorSection tutorSectionSubjects">
             <div className="tutorSubjects">
               {visibleSubjects.map((s) => (
@@ -113,9 +110,8 @@ export function TutorCard({
               ) : null}
             </div>
           </div>
-        )}
+        ) : null}
 
-        {/* Grades */}
         <div className="tutorSection tutorSectionGrades">
           <div className="tutorGrades">
             {visibleGrades.map((g) => (
@@ -129,6 +125,14 @@ export function TutorCard({
               </Tag>
             ) : null}
           </div>
+        </div>
+
+        <div className="tutorCardFooter">
+          <Text type="secondary">
+            Preferred contact:{' '}
+            {tutor.preferredContactMethod === 'whatsapp' ? 'WhatsApp' : 'Email'}
+          </Text>
+          <Button size="small">View profile</Button>
         </div>
       </div>
     </Card>
