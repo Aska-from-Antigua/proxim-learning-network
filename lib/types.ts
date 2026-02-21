@@ -26,6 +26,7 @@ export type Tutor = {
   bio: string;
   email: string;
   whatsapp: string;
+  preferredContactMethod: 'whatsapp' | 'email';
   defaults: TutorDefaults;
   offerings: Offering[];
 };

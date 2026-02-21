@@ -1,8 +1,8 @@
 'use client';
 
 import { Card, Col, Row, Select, Segmented, Typography } from 'antd';
-import { Grade, Subject, Modality } from '@/lib/enums';
-import { GradeLabel, SubjectLabel, ModalityLabel } from '@/lib/labels';
+import { Grade, Modality, Subject } from '@/lib/enums';
+import { GradeLabel, ModalityLabel, SubjectLabel } from '@/lib/labels';
 import type { ModalityFilter, RateSort } from '@/lib/helpers/tutor';
 
 const { Text } = Typography;
@@ -10,16 +10,12 @@ const { Text } = Typography;
 type Props = {
   subjectFilter: Subject[];
   onSubjectFilterChange: (v: Subject[]) => void;
-
   gradeFilter: Grade[];
   onGradeFilterChange: (v: Grade[]) => void;
-
   modalityFilter: ModalityFilter;
   onModalityFilterChange: (v: ModalityFilter) => void;
-
   sort: RateSort;
   onSortChange: (v: RateSort) => void;
-
   resultsCount: number;
   totalCount: number;
 };
@@ -35,7 +31,7 @@ export function TutorFilters(props: Props) {
               className="filtersControl"
               mode="multiple"
               allowClear
-              placeholder="Select subject(s)"
+              placeholder="Any subject"
               options={Object.values(Subject).map((s) => ({
                 value: s,
                 label: SubjectLabel[s],
@@ -51,7 +47,7 @@ export function TutorFilters(props: Props) {
               className="filtersControl"
               mode="multiple"
               allowClear
-              placeholder="Select grade(s)"
+              placeholder="Any grade"
               options={Object.values(Grade).map((g) => ({
                 value: g,
                 label: GradeLabel[g],
@@ -91,15 +87,16 @@ export function TutorFilters(props: Props) {
               value={props.sort}
               onChange={(v) => props.onSortChange(v as RateSort)}
               options={[
-                { value: 'RATE_DESC', label: 'Highest → Lowest' },
-                { value: 'RATE_ASC', label: 'Lowest → Highest' },
+                { value: 'RATE_DESC', label: 'Highest to Lowest' },
+                { value: 'RATE_ASC', label: 'Lowest to Highest' },
               ]}
             />
           </Col>
 
           <Col xs={24}>
             <Text type="secondary">
-              Showing <b>{props.resultsCount}</b> of <b>{props.totalCount}</b>
+              Showing <b>{props.resultsCount}</b> of <b>{props.totalCount}</b>{' '}
+              tutors
             </Text>
           </Col>
         </Row>
