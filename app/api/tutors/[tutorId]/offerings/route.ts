@@ -39,17 +39,6 @@ export async function POST(
     return badRequest('Invalid tutor_id');
   }
 
-  const tutor = await findTutorById(parsedId);
-  if (!tutor) {
-    return notFound('Tutor not found');
-  }
-
-  const isAdmin = isAdminRequest(req);
-  const requesterPhone = getRequesterTutorPhone(req);
-  if (!isAdmin && requesterPhone !== tutor.phone) {
-    return forbidden('You can only add offerings to your own tutor profile');
-  }
-
   const body = (await req.json().catch(() => ({}))) as Body;
   if (
     !body.subject ||
@@ -83,6 +72,37 @@ export async function POST(
   const availability = normalizeAvailability(body.availability_tags);
   if (availability.length === 0) {
     return badRequest('availability_tags must include valid values');
+  }
+
+  if (process.env.NEXT_PUBLIC_PREVIEW_MODE === 'true') {
+    return NextResponse.json(
+      {
+        offering_id: Date.now(),
+        tutor_id: parsedId,
+        subject_id: 0,
+        grades: body.grades,
+        modality: body.modality,
+        location_area:
+          body.modality === 'online' ? null : (body.location_area ?? null),
+        price_cents: body.price_cents,
+        currency: body.currency,
+        availability_tags: availability,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      },
+      { status: 202 },
+    );
+  }
+
+  const tutor = await findTutorById(parsedId);
+  if (!tutor) {
+    return notFound('Tutor not found');
+  }
+
+  const isAdmin = isAdminRequest(req);
+  const requesterPhone = getRequesterTutorPhone(req);
+  if (!isAdmin && requesterPhone !== tutor.phone) {
+    return forbidden('You can only add offerings to your own tutor profile');
   }
 
   try {

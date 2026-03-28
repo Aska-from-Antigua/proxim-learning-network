@@ -35,6 +35,17 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return badRequest('preferred_contact_method must be whatsapp or email');
   }
 
+  if (process.env.NEXT_PUBLIC_PREVIEW_MODE === 'true') {
+    return NextResponse.json(
+      {
+        tutor_id: 9999,
+        status: 'pending',
+        full_name: body.full_name,
+      },
+      { status: 202 },
+    );
+  }
+
   const result = await registerTutor({
     full_name: body.full_name,
     phone: body.phone,
