@@ -265,121 +265,127 @@ export default function BecomeATutorPage() {
                 <Form.List name="offerings">
                   {(fields, { add, remove }) => (
                     <Space
-                      direction="vertical"
+                      orientation="vertical"
                       size={14}
                       style={{ width: '100%' }}
                     >
-                      {fields.map((field) => (
-                        <Card key={field.key} className="offeringBuilderCard">
-                          <Row gutter={[12, 12]}>
-                            <Col xs={24} md={12}>
-                              <Form.Item
-                                {...field}
-                                name={[field.name, 'subject']}
-                                label="Subject"
-                                rules={[
-                                  { required: true, message: 'Required' },
-                                ]}
-                              >
-                                <Select
-                                  placeholder="Select subject"
-                                  options={Object.values(Subject).map((s) => ({
-                                    value: s,
-                                    label: SubjectLabel[s],
-                                  }))}
-                                />
-                              </Form.Item>
-                            </Col>
+                      {fields.map((field) => {
+                        const { key: _fieldKey, ...restField } = field;
 
-                            <Col xs={24} md={12}>
-                              <Form.Item
-                                {...field}
-                                name={[field.name, 'grades']}
-                                label="Grades"
-                                rules={[
-                                  { required: true, message: 'Required' },
-                                ]}
-                              >
-                                <Select
-                                  mode="multiple"
-                                  placeholder="Select grades"
-                                  options={Object.values(Grade).map((g) => ({
-                                    value: g,
-                                    label: GradeLabel[g],
-                                  }))}
-                                />
-                              </Form.Item>
-                            </Col>
+                        return (
+                          <Card key={field.key} className="offeringBuilderCard">
+                            <Row gutter={[12, 12]}>
+                              <Col xs={24} md={12}>
+                                <Form.Item
+                                  {...restField}
+                                  name={[field.name, 'subject']}
+                                  label="Subject"
+                                  rules={[
+                                    { required: true, message: 'Required' },
+                                  ]}
+                                >
+                                  <Select
+                                    placeholder="Select subject"
+                                    options={Object.values(Subject).map(
+                                      (s) => ({
+                                        value: s,
+                                        label: SubjectLabel[s],
+                                      }),
+                                    )}
+                                  />
+                                </Form.Item>
+                              </Col>
 
-                            <Col xs={24} md={8}>
-                              <Form.Item
-                                {...field}
-                                name={[field.name, 'modality']}
-                                label="Modality"
-                                rules={[
-                                  { required: true, message: 'Required' },
-                                ]}
-                              >
-                                <Select options={modalityOptions} />
-                              </Form.Item>
-                            </Col>
+                              <Col xs={24} md={12}>
+                                <Form.Item
+                                  {...restField}
+                                  name={[field.name, 'grades']}
+                                  label="Grades"
+                                  rules={[
+                                    { required: true, message: 'Required' },
+                                  ]}
+                                >
+                                  <Select
+                                    mode="multiple"
+                                    placeholder="Select grades"
+                                    options={Object.values(Grade).map((g) => ({
+                                      value: g,
+                                      label: GradeLabel[g],
+                                    }))}
+                                  />
+                                </Form.Item>
+                              </Col>
 
-                            <Col xs={24} md={8}>
-                              <Form.Item
-                                {...field}
-                                name={[field.name, 'availability_tags']}
-                                label="Availability"
-                                rules={[
-                                  { required: true, message: 'Required' },
-                                ]}
-                              >
-                                <Select
-                                  mode="multiple"
-                                  placeholder="Select tags"
-                                  options={availabilityOptions}
-                                />
-                              </Form.Item>
-                            </Col>
+                              <Col xs={24} md={8}>
+                                <Form.Item
+                                  {...restField}
+                                  name={[field.name, 'modality']}
+                                  label="Modality"
+                                  rules={[
+                                    { required: true, message: 'Required' },
+                                  ]}
+                                >
+                                  <Select options={modalityOptions} />
+                                </Form.Item>
+                              </Col>
 
-                            <Col xs={24} md={8}>
-                              <Form.Item
-                                {...field}
-                                name={[field.name, 'price_cents']}
-                                label="Price (XCD cents)"
-                                rules={[
-                                  { required: true, message: 'Required' },
-                                ]}
-                              >
-                                <InputNumber
-                                  min={1}
-                                  step={100}
-                                  style={{ width: '100%' }}
-                                  placeholder="e.g. 5000"
-                                />
-                              </Form.Item>
-                            </Col>
+                              <Col xs={24} md={8}>
+                                <Form.Item
+                                  {...restField}
+                                  name={[field.name, 'availability_tags']}
+                                  label="Availability"
+                                  rules={[
+                                    { required: true, message: 'Required' },
+                                  ]}
+                                >
+                                  <Select
+                                    mode="multiple"
+                                    placeholder="Select tags"
+                                    options={availabilityOptions}
+                                  />
+                                </Form.Item>
+                              </Col>
 
-                            <Col xs={24}>
-                              <Form.Item
-                                {...field}
-                                name={[field.name, 'location_area']}
-                                label="Location area (required for in-person/both)"
-                              >
-                                <Input placeholder="e.g. St. John's" />
-                              </Form.Item>
-                            </Col>
-                          </Row>
+                              <Col xs={24} md={8}>
+                                <Form.Item
+                                  {...restField}
+                                  name={[field.name, 'price_cents']}
+                                  label="Price (XCD cents)"
+                                  rules={[
+                                    { required: true, message: 'Required' },
+                                  ]}
+                                >
+                                  <InputNumber
+                                    min={1}
+                                    step={100}
+                                    style={{ width: '100%' }}
+                                    placeholder="e.g. 5000"
+                                  />
+                                </Form.Item>
+                              </Col>
 
-                          <Button
-                            danger
-                            type="text"
-                            icon={<MinusCircleOutlined />}
-                            onClick={() => remove(field.name)}
-                          >
-                            Remove offering
-                          </Button>
-                        </Card>
-                      ))}
+                              <Col xs={24}>
+                                <Form.Item
+                                  {...restField}
+                                  name={[field.name, 'location_area']}
+                                  label="Location area (required for in-person/both)"
+                                >
+                                  <Input placeholder="e.g. St. John's" />
+                                </Form.Item>
+                              </Col>
+                            </Row>
+
+                            <Button
+                              danger
+                              type="text"
+                              icon={<MinusCircleOutlined />}
+                              onClick={() => remove(field.name)}
+                            >
+                              Remove offering
+                            </Button>
+                          </Card>
+                        );
+                      })}
 
                       <Button
                         type="dashed"

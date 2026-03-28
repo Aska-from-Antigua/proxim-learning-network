@@ -102,7 +102,7 @@ export default function TutorProfilePage() {
     return (
       <PublicShell>
         <div className="pageStack tutorsPage">
-          <Space direction="vertical" size={16} style={{ width: '100%' }}>
+          <Space orientation="vertical" size={16} style={{ width: '100%' }}>
             <Title level={3} style={{ margin: 0 }}>
               Tutor not found
             </Title>

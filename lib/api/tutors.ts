@@ -1,5 +1,6 @@
 import type { Grade, Subject } from '@/lib/enums';
 import { Modality } from '@/lib/enums';
+import { PREVIEW_TUTORS } from '@/lib/data/preview-tutors';
 import type { Tutor, Offering } from '@/lib/types';
 
 type ApiOffering = {
@@ -126,6 +127,10 @@ function mapTutorToUi(tutor: ApiTutor): Tutor {
 }
 
 export async function fetchTutorDirectory(): Promise<Tutor[]> {
+  if (process.env.NEXT_PUBLIC_PREVIEW_MODE === 'true') {
+    return PREVIEW_TUTORS;
+  }
+
   const response = await fetch('/api/search/tutors', { cache: 'no-store' });
 
   if (!response.ok) {

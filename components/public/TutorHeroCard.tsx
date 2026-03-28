@@ -53,7 +53,7 @@ export function TutorHeroCard({ tutor }: Props) {
         </Col>
 
         <Col xs={24} md={9}>
-          <Space direction="vertical" size={8} className="tutorProfileCtas">
+          <Space orientation="vertical" size={8} className="tutorProfileCtas">
             <Button
               type="primary"
               block
