@@ -3,6 +3,7 @@
 import { Layout } from 'antd';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 
 const { Header } = Layout;
 
@@ -30,10 +31,38 @@ function isActive(pathname: string, href: string): boolean {
 
 export function PublicHeader() {
   const pathname = usePathname();
+  const innerRef = useRef<HTMLDivElement>(null);
+  const [moreRight, setMoreRight] = useState(false);
+
+  useEffect(() => {
+    const el = innerRef.current;
+    if (!el) {
+      return;
+    }
+
+    const update = () => {
+      setMoreRight(el.scrollWidth - el.clientWidth - el.scrollLeft > 1);
+    };
+
+    update();
+    el.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      el.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
+  }, []);
+
+  useEffect(() => {
+    const active = innerRef.current?.querySelector<HTMLElement>(
+      '.headerLink.isActive',
+    );
+    active?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  }, [pathname]);
 
   return (
-    <Header className="publicHeader">
-      <div className="headerInner" style={{ display: 'flex' }}>
+    <Header className={`publicHeader ${moreRight ? 'navHasMore' : ''}`}>
+      <div ref={innerRef} className="headerInner" style={{ display: 'flex' }}>
         <Link href="/" className="brandMark" aria-label="Proxim home">
           <span className="brandText">PLN</span>
         </Link>
